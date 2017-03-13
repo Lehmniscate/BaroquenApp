@@ -56,3 +56,5 @@ Baroquen is a web application inspired by Spotify built using Ruby on Rails and 
 ### Bonus Features (TBD)
 - [ ] Radio
 - [ ] Explore page
+- [ ] Search
+- [ ] Recently Played

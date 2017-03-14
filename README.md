@@ -4,7 +4,7 @@
 
 [Trello link][trello]
 
-[heroku]: http://www.herokuapp.com
+[heroku]: http://baroquen.herokuapp.com
 [trello]: https://trello.com/b/LINDF6v9/baroquen
 
 ## Minimum Viable Product

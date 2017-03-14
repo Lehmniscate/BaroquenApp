@@ -5,7 +5,7 @@
 [Trello link][trello]
 
 [heroku]: http://www.herokuapp.com
-[trello]: https://trello.com/b/ALgfuX0Q/freshernote
+[trello]: https://trello.com/b/LINDF6v9/baroquen
 
 ## Minimum Viable Product
 

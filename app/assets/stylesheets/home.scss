@@ -1,0 +1,34 @@
+.home-page {
+  height: 100%;
+}
+.wrapper {
+    min-height: 100%;
+    // height: auto !important;
+    height: 100%;
+    margin: 0 auto -125px; /* the bottom margin is the negative value of the footer's height */
+    position: relative
+}
+.footer {
+    height: 125px;
+}
+
+.push {
+    height: 125px;
+    clear: both;
+}
+
+.content {
+    height: 100%;
+}
+
+.sidebar {
+    width: 150px;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    bottom: 50px;
+}
+
+.main {
+    margin-left: 150px;
+}

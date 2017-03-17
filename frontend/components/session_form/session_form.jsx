@@ -22,16 +22,15 @@ class SessionForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const user = this.state;
-    this.props.processForm({user});
+    this.props.processForm(this.state);
     return false;
   }
 
   navLink() {
     if (this.props.formType === 'login') {
-      return <Link to="/signup">Sign up</Link>;
+      return <Link to="/signup">Sign up with a new account</Link>;
     } else {
-      return <Link to="/login">Log In</Link>;
+      return <Link to="/login">Log In with an existing account</Link>;
     }
   }
 
@@ -43,7 +42,20 @@ class SessionForm extends React.Component {
     );
   }
 
+
+
   render() {
+    let email = "";
+    if(this.props.formType === 'signup') {
+      email = (
+        <label> Email:
+          <input type="text"
+                  value={this.state.email}
+                  onChange={this.update("email")}
+                  className="login-input" />
+        </label>
+      )
+    }
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
@@ -55,23 +67,20 @@ class SessionForm extends React.Component {
                       onChange={this.update("username")}
                       className="login-input" />
             </label>
-            <label> Email:
-              <input type="text"
-                      value={this.state.email}
-                      onChange={this.update("email")}
-                      className="login-input" />
-            </label>
+            {email}
             <label> Password:
               <input type="password"
                       value={this.state.password}
                       onChange={this.update("password")}
                       className="login-input" />
             </label>
+            <input className="submit" type="submit" value={this.props.formType} />
           </div>
         </form>
+        {this.navLink()}
       </div>
     );
   }
 }
 
-export default withRouter(SessionForm);
+export default SessionForm;

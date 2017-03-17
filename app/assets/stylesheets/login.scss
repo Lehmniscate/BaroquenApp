@@ -1,0 +1,117 @@
+html, body, #root, .page {
+  height: 100%;
+  min-height: 100%;
+  background-color: #151515;
+  margin: 0px;
+  padding: 0px;
+}
+
+.login-page {
+  background-position: center;
+  background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9) ), url('https://upload.wikimedia.org/wikipedia/commons/a/a9/Berlin-_Church_pipe_organ_at_St_Marienkirche_-_3235.jpg');
+ -webkit-background-size: cover;
+ -moz-background-size:  cover;
+ background-size: cover;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  height: 100%;
+  color: purple;
+}
+
+.form-container {
+  padding-right: 30px;
+  display: flex;
+  align-self: center;
+}
+
+.login-information {
+  border-left: 1px solid #444;
+  padding-left: 30px;
+  width: 500px;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+}
+
+.login-information h1 {
+  font-size: 50px;
+}
+
+.login-information li {
+  color: #ddd;
+}
+
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  color: #ddd;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form label {
+  margin-bottom: 30px;
+  font-size: 12px;
+}
+
+.login-form input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #333;
+  width: 100%;
+  color: white;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.login-form input:focus {
+  outline: none;
+}
+
+.login-form .submit {
+  background-color: purple;
+  width: 100%;
+  height: 36px;
+  border-radius: 18px;
+  border: 1px #333 solid;
+  cursor: pointer;
+}
+
+.login-form .submit:hover {
+  background-color: green;
+}
+
+.login-form-container a {
+  color: darkgray;
+  font-size: 10px;
+  align-self: center;
+  margin-top: 10px;
+}
+
+.demo, .signup {
+  background-color: purple;
+  width: 100%;
+  height: 36px;
+  border-radius: 18px;
+  border: 1px #333 solid;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.signup span {
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.demo:hover, .signup:hover {
+  background-color: green;
+}

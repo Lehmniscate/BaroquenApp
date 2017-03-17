@@ -41,7 +41,7 @@ class User < ApplicationRecord
     SecureRandom.urlsafe_base64(16)
   end
 
-  def ensure_session_token_uniquness
+  def ensure_session_token_uniqueness
     while User.find_by(session_token: self.session_token)
       self.session_token = new_session_token
     end

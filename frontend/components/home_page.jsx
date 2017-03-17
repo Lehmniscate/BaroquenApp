@@ -16,7 +16,7 @@ class HomePage extends React.Component {
       <div className="home-page">
         <div className="wrapper">
           <div className="content">
-            <div className="sidebar"><SideBar logout={this.logout.bind(this)} /></div>
+            <div className="sidebar"><SideBar currentUser={this.props.currentUser} logout={this.logout.bind(this)} /></div>
             <div className="main">
               {this.props.children}
             </div>

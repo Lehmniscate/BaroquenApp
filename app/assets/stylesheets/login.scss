@@ -7,7 +7,6 @@ html, body, #root, .page {
 }
 
 .login-page {
-  background-position: center;
   background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9) ), url('https://upload.wikimedia.org/wikipedia/commons/a/a9/Berlin-_Church_pipe_organ_at_St_Marienkirche_-_3235.jpg');
  -webkit-background-size: cover;
  -moz-background-size:  cover;
@@ -16,7 +15,8 @@ html, body, #root, .page {
   align-content: center;
   justify-content: center;
   height: 100%;
-  color: purple;
+  color: blueviolet;
+  background-position: center center;
 }
 
 .form-container {
@@ -36,6 +36,7 @@ html, body, #root, .page {
 
 .login-information h1 {
   font-size: 50px;
+  margin-top: 0;
 }
 
 .login-information li {
@@ -74,7 +75,7 @@ html, body, #root, .page {
 }
 
 .login-form .submit {
-  background-color: purple;
+  background-color: blueviolet;
   width: 100%;
   height: 36px;
   border-radius: 18px;
@@ -83,7 +84,7 @@ html, body, #root, .page {
 }
 
 .login-form .submit:hover {
-  background-color: green;
+  background-color: darkslateblue;
 }
 
 .login-form-container a {
@@ -94,7 +95,7 @@ html, body, #root, .page {
 }
 
 .demo, .signup {
-  background-color: purple;
+  background-color: blueviolet;
   width: 100%;
   height: 36px;
   border-radius: 18px;
@@ -113,5 +114,5 @@ html, body, #root, .page {
 }
 
 .demo:hover, .signup:hover {
-  background-color: green;
+  background-color: darkslateblue;
 }

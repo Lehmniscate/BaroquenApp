@@ -1,6 +1,8 @@
 .home-page {
   height: 100%;
+  background-color: #080808;
 }
+
 .wrapper {
     min-height: 100%;
     // height: auto !important;
@@ -8,8 +10,12 @@
     margin: 0 auto -125px; /* the bottom margin is the negative value of the footer's height */
     position: relative
 }
+
 .footer {
     height: 125px;
+    border: 2px solid #080808;
+    box-sizing: border-box;
+    background-color: #161616;
 }
 
 .push {
@@ -26,9 +32,35 @@
     position: absolute;
     left: 0;
     top: 0px;
-    bottom: 50px;
+    bottom: 125px;
+    border: 2px solid #080808;
+    background-color: #161616;
+    color: white;
+    box-sizing: border-box;
 }
 
 .main {
     margin-left: 150px;
+}
+
+.side-bar {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.side-bar > a {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  text-decoration: none;
+  color: #CCCCCC;
+}
+
+.side-bar > a > img {
+  width: 20px;
+  height: 20px;
 }

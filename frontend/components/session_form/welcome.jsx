@@ -19,7 +19,7 @@ class Welcome extends React.Component {
     e.preventDefault();
     this.props.login({
       username: "Guest",
-      password: "GuestPassword"
+      password: "Password"
     });
     return false;
   }

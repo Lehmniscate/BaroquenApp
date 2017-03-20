@@ -23,8 +23,8 @@ image = URI.parse("#{awspath}Bach.jpg").open
 bach.image = image
 bach.save!
 
-otherfreeworks = Album.new(title: "Organ Works: other free works")
-image = URI.parse("#{awspath}/Albums/Organ+Works%3A+Other+Free+Works/Bach_Organ_Works_Other_Free_Works.jpg").open
+otherfreeworks = Album.new(title: "Organ Works: other free works", artist_id: bach.id)
+image = URI.parse("#{awspath}Albums/Organ+Works%3A+Other+Free+Works/Bach_Organ_Works_Other_Free_Works.jpg").open
 otherfreeworks.image = image
 otherfreeworks.save!
 
@@ -60,7 +60,7 @@ songs = [
 ]
 
 songs.each do |song_path|
-  song = URI.parse("#{awspath}/Albums/Organ+Works%3A+Other+Free+Works/James_Kibbie_-_#{song_path}.mp3").open
+  song = URI.parse("#{awspath}Albums/Organ+Works%3A+Other+Free+Works/James_Kibbie_-_#{song_path}.mp3").open
   Song.create!(title: song_path.split("_").drop(2).join(" "),
       album_id: otherfreeworks.id,
       track_number: song_path.split("_").first.to_i,

@@ -8,12 +8,15 @@ import SessionFormContainer from './session_form/session_form_container';
 import WelcomeContainer from './session_form/welcome_container';
 import LoginPage from './session_form/login_page';
 import HomePageContainer from './home_page_container';
+import BrowseContainer from './browsing/browse_container';
+import ArtistContainer from './artists/artist_container';
+import AlbumContainer from './albums/album_container';
 
 const Root = ({store}) => {
 
   const _redirectIfLoggedIn = (nextState, replace) => {
     const currentUser = store.getState().session.currentUser;
-    if(currentUser) replace('/');
+    if(currentUser) replace('/home');
   };
 
   const _ensureLoggedIn = (nextState, replace) => {
@@ -30,9 +33,11 @@ const Root = ({store}) => {
             <Route path="/signup" component={SessionFormContainer} onEnter={_redirectIfLoggedIn} />
             <Route path="/welcome" component={WelcomeContainer} onEnter={_redirectIfLoggedIn} />
           </Route>
-          <IndexRoute component={HomePageContainer} onEnter={_ensureLoggedIn}>
-
-          </IndexRoute>
+          <Route path="/home" component={HomePageContainer} onEnter={_ensureLoggedIn}>
+            <Route path="/browse" component={BrowseContainer} />
+            <Route path="/artist/:artistId" component={ArtistContainer} />
+            <Route path="/album/:albumId" component={AlbumContainer} />
+          </Route>
         </Route>
       </Router>
     </Provider>

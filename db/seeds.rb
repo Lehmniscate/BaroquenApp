@@ -11,3 +11,16 @@ User.delete_all
 demoUser = User.new({username: "Guest", email: "example@baroquen.com"})
 demoUser.password = "password"
 demoUser.save!
+
+Artist.delete_all
+Album.delete_all
+Song.delete_all
+
+awspath = "https://s3.amazonaws.com/baroquen-dev/"
+
+bach = Artist.new(name: "Johann Sebastian Bach", description: "A German composer and musician of the Baroque period")
+image = URI.parse("#{awspath}Bach.jpg").open
+bach.image = image
+bach.save!
+
+

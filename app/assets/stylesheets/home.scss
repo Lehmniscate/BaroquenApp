@@ -16,6 +16,8 @@
     border: 2px solid #080808;
     box-sizing: border-box;
     background-color: #161616;
+    position: fixed;
+    width: 100%;
 }
 
 .push {
@@ -29,7 +31,7 @@
 
 .sidebar {
     width: 150px;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0px;
     bottom: 125px;
@@ -63,4 +65,12 @@
 .side-bar > a > img {
   width: 20px;
   height: 20px;
+}
+
+.wrapper {
+  z-index: 0;
+}
+
+.footer {
+  z-index: 100;
 }

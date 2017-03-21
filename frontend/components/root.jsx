@@ -24,10 +24,19 @@ const Root = ({store}) => {
     if(!currentUser) replace('/welcome');
   }
 
+  const _redirect = (nextState, replace) => {
+    const currentUser = store.getState().session.currentUser;
+    if(currentUser)
+      replace('/home');
+    else
+      replace('/welcome');
+  }
+
   return (
     <Provider store={store}>
       <Router history={hashHistory}>
         <Route path="/" component={App}>
+          <IndexRoute onEnter={_redirect} />
           <Route component={LoginPage}>
             <Route path="/login" component={SessionFormContainer} onEnter={_redirectIfLoggedIn} />
             <Route path="/signup" component={SessionFormContainer} onEnter={_redirectIfLoggedIn} />

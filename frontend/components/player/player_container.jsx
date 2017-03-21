@@ -1,14 +1,17 @@
 import {connect} from 'react-redux';
 import Player from './player';
-import {nextSong, previousSong} from '../../actions/player_actions';
+import {nextSong, previousSong, receiveSong } from '../../actions/player_actions';
 
-const mapStateToProps = {player} => ({
-  player
+const mapStateToProps = ({player}) => ({
+  playlist_url: player.playlist_url,
+  playlist: player.playlist,
+  song: player.song
 });
 
 const mapDispatchToProps = dispatch => ({
   nextSong: () => dispatch(nextSong()),
-  previousSong: () => dispatch(previousSong())
+  previousSong: () => dispatch(previousSong()),
+  receiveSong: (url, playlist, song) => dispatch(receiveSong(url, playlist, song))
 });
 
 export default connect(

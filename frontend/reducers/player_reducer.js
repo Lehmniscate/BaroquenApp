@@ -21,7 +21,7 @@ const PlayerReducer = (state = defaultState, action) => {
       return {
         playlist_url: action.playlist_url,
         playlist: action.playlist,
-        playing: true
+        playing: true,
         song: action.song
       };
     case PLAY:

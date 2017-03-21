@@ -70,25 +70,33 @@ class Player extends React.Component {
           onProgress={this.onProgress}
           onDuration={duration => this.setState({ duration })}
         />
-      //Play Pause Button
-        <button onClick={this.props.previousSong}>Prev</button>
-        <button onClick={this.props.nextSong}>Next</button>
-        <button onClick={this.playPause}>{playing ? 'Pause' : 'Play'}</button>
-      //Seek Bar
+      <div className="currentlyPlaying">
+        {this.props.playlist_url}
+      </div>
+      <div className="player-controls">
         <input
           type='range' min={0} max={1} step='any'
+          className='sliders'
           value={played}
           onMouseDown={this.onSeekMouseDown}
           onChange={this.onSeekChange}
           onMouseUp={this.onSeekMouseUp}
         />
-      //volume
-        <input type='range' min={0} max={1} step='any' value={volume} onChange={this.setVolume} />
+ 
+      <div className="song-controls">
+        <button onClick={this.props.previousSong}>Prev</button>
+        <button onClick={this.playPause}>{playing ? 'Pause' : 'Play'}</button>
+        <button onClick={this.props.nextSong}>Next</button>
+      </div>
+      </div>
+      <div className="volume-control">
+        <input type='range' className='sliders' min={0} max={1} step='any' value={volume} onChange={this.setVolume} />
         <button onClick={(e) => {e.preventDefault(); console.log("hi"); this.props.receiveSong(
             "/browse",
             ["https://s3.amazonaws.com/baroquen-dev/Albums/Organ+Works%3A+Other+Free+Works/James_Kibbie_-_15_-_BWV_582_Passacaglia_and_Fugue_in_C_Minor.mp3"],
             0
           ); return false;}}>Demo</button>
+      </div>
       </div>
     )
   }

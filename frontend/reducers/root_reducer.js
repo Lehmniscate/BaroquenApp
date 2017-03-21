@@ -5,7 +5,8 @@ import MusicReducer from './music_reducer';
 
 const RootReducer = combineReducers({
   session: SessionReducer,
-  music: MusicReducer
+  music: MusicReducer,
+  player: PlayerReducer
 });
 
 export default RootReducer;

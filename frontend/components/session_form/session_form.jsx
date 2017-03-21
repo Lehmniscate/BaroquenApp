@@ -28,9 +28,9 @@ class SessionForm extends React.Component {
 
   navLink() {
     if (this.props.formType === 'login') {
-      return <Link to="/signup">Sign up with a new account</Link>;
+      return <Link onClick={this.props.clearErrors} to="/signup">Sign up with a new account</Link>;
     } else {
-      return <Link to="/login">Log In with an existing account</Link>;
+      return <Link onClick={this.props.clearErrors} to="/login">Log In with an existing account</Link>;
     }
   }
 
@@ -40,6 +40,16 @@ class SessionForm extends React.Component {
         {this.props.errors.map((error, i) => <li key={`error-${i}`}>{error}</li>)}
       </ul>
     );
+  }
+
+
+  login(e) {
+    e.preventDefault();
+    this.props.login({
+      username: "Guest",
+      password: "password"
+    });
+    return false;
   }
 
 
@@ -58,6 +68,7 @@ class SessionForm extends React.Component {
     }
     return (
       <div className="login-form-container">
+        <span className="demo" onClick={this.login.bind(this)}>Demo</span>
         <form onSubmit={this.handleSubmit} className="login-form-box">
           {this.renderErrors()}
           <div className="login-form">

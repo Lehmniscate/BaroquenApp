@@ -10,7 +10,7 @@ const defaultState = Object.freeze({
   playlist_url: '/browse',
   playlist: [],
   playing: false,
-  song: 0
+  song: -1
 });
 
 const PlayerReducer = (state = defaultState, action) => {

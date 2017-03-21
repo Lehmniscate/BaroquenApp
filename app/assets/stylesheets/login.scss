@@ -94,7 +94,7 @@ html, body, #root, .page {
   margin-top: 10px;
 }
 
-.demo, .signup {
+.demo, .signup, .login {
   background-color: blueviolet;
   width: 100%;
   height: 36px;
@@ -113,6 +113,11 @@ html, body, #root, .page {
   font-size: 16px;
 }
 
-.demo:hover, .signup:hover {
+a.login {
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.login:hover, .demo:hover, .signup:hover {
   background-color: darkslateblue;
 }

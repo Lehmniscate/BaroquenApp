@@ -6,7 +6,8 @@ import {receiveSong} from '../../actions/player_actions';
 
 const mapStateToProps = ({music, music: songs, music: albums}, {params}) => ({
   songs: SongsByAlbum(music, params.albumId),
-  album: music.albums[params.albumId]
+  album: music.albums[params.albumId],
+  artists: music.artists
 });
 
 const mapDispatchToProps = (dispatch, {params}) => ({

@@ -19,5 +19,5 @@ export const previousSong = () => ({
 });
 
 export const receivePlayPause = () => ({
-  typ: PLAYPAUSE
+  type: PLAYPAUSE
 });

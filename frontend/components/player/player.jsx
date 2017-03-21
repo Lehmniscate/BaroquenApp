@@ -60,7 +60,7 @@ class Player extends React.Component {
     } = this.props;
 
     let nowPlaying = {};
-    if(song) {
+    if(songs[playlist[song]]) {
       nowPlaying = songs[playlist[song]];
     }
 
@@ -76,7 +76,7 @@ class Player extends React.Component {
           onPlay={() => this.setState({playing: true})}
           onPause={() => this.setState({ playing: false })}
           onBuffer={() => console.log('onBuffer')}
-          onEnded={() => this.setState({ playing: false })}
+          onEnded={() => this.props.nextSong()}
           onError={e => console.log('onError', e)}
           onProgress={this.onProgress}
           onDuration={duration => this.setState({ duration })}
@@ -86,7 +86,7 @@ class Player extends React.Component {
           <Link to={this.props.playlist_url} className="now-playing">
             <span>Now Playing</span>
             <img src={nowPlaying.id ? albums[nowPlaying.album_id].image_url : ""} />
-            <span>{nowPlaying.title}</span>
+            <div className="c-p-song-container"><span className="c-p-song-name">{nowPlaying.title}</span></div>
           </Link>
         </div>
 

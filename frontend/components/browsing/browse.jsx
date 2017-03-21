@@ -11,7 +11,7 @@ class Browse extends React.Component {
     return (
       <div className="artist-browse">
         {this.props.artists.map(artist => (
-          <Link to={`artist/${artist.id}`} ><img src={artist.image_url} /></Link>))}
+          <Link key={artist.id} to={`artist/${artist.id}`} ><img src={artist.image_url} /></Link>))}
       </div>
     );
   }

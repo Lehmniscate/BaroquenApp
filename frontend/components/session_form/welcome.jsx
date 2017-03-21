@@ -14,7 +14,7 @@ class Welcome extends React.Component {
   redirectIfLoggedIn() {
     if(this.props.loggedIn) this.props.router.push('/');
   }
-
+ 
   login(e) {
     e.preventDefault();
     this.props.login({
@@ -24,7 +24,7 @@ class Welcome extends React.Component {
     return false;
   }
 
-  navLink() {
+ navLink() {
     if (this.props.formType === 'login') {
       return <Link to="/signup">Sign up</Link>;
     } else {
@@ -37,9 +37,7 @@ class Welcome extends React.Component {
       <div className="login-form-container">
         <span className="demo" onClick={this.login.bind(this)}>Demo</span>
         <Link className="signup" to="/signup"><span>Sign up Here</span></Link>
-        <span>
-          Already have an account? <Link to="/login">log in here</Link>
-        </span>
+        <Link className="login" to="/login">Log In</Link>
       </div>
     );
   }

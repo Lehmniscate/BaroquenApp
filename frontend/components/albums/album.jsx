@@ -10,11 +10,11 @@ class Album extends React.Component {
     return e => {
       e.preventDefault();
       let id = 0;
-      let playlist = this.props.songs.map(songId, idx => {
-        if(songId === song.id) {
+      let playlist = this.props.songs.map((songObject, idx) => {
+        if(songObject.id === song.id) {
           id = idx;
         }
-        return songId;
+        return songObject.id;
       });
       this.props.receiveSong(playlist, id);
       return false;
@@ -22,9 +22,7 @@ class Album extends React.Component {
   }
 
   render() {
-    if(!this.props.songs || !this.props.album) return null;
-
-    console.log(this.props);
+    if(!this.props.songs || !this.props.album || !this.props.songs[0]) return null;
 
     return (
       <div className="album">
@@ -32,7 +30,7 @@ class Album extends React.Component {
         <h1>{this.props.album.title}</h1>
       <ol>
         {this.props.songs.map(song => (
-          <li onClick={this.playSong(song)}>{song.title}</li>
+          <li key={song.id} onClick={this.playSong(song)}>{song.title}</li>
         ))}
       </ol>
       </div>

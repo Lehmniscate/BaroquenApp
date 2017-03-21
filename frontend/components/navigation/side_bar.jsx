@@ -7,15 +7,16 @@ class SideBar extends React.Component {
     let user = this.props.currentUser;
     if(user)
       user = (<Link to="/profile"><img src={this.props.currentUser.image_url} />{this.props.currentUser.username}</Link>);
-    else 
+    else
       user = "";
-    
+
     return (
       <div className="side-bar">
         <div>
           <a href="#" onClick={this.props.logout}>Log out</a>
+          <Link to="/browse">Browse</Link>
         </div>
-        {user}     
+        {user}
       </div>
     );
   }

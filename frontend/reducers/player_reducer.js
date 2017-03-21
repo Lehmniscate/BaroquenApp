@@ -1,7 +1,6 @@
 import {
   RECEIVE_SONG,
-  PLAY,
-  PAUSE,
+  PLAYPAUSE,
   NEXT,
   PREVIOUS
 } from '../actions/player_actions';
@@ -24,14 +23,18 @@ const PlayerReducer = (state = defaultState, action) => {
         playing: true,
         song: action.song
       };
-    case PLAY:
-      return merge({}, state, {playing: true});
-    case PAUSE:
-      return merge({}, state, {playing: false});
+    case PLAYPAUSE:
+      return merge({}, state, {playing: !state.playing});
     case NEXT:
-      return merge({}, state, {song: state.song + 1});
+      let newSong = state.song + 1;
+      if(newSong === state.playlist.length)
+        newSong = state.song;
+      return merge({}, state, {song: newSong});
     case PREVIOUS:
-      return merge({}, state, {song: state.song - 1});
+      newSong = state.song - 1
+      if(newSong === -1)
+        newSong = 0;
+      return merge({}, state, {song: newSong});
     default:
       return state;
   }

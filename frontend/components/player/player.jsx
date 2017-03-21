@@ -7,7 +7,6 @@ class Player extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      playing: false,
       volume: 0.8,
       played: 0,
       loaded: 0,
@@ -21,7 +20,7 @@ class Player extends React.Component {
     this.onProgress = this.onProgress.bind(this);
   }
   playPause() {
-    this.setState({ playing: !this.state.playing })
+    this.props.receivePlayPause();
   }
 
   setVolume(e) {
@@ -49,9 +48,21 @@ class Player extends React.Component {
 
   render() {
     const {
-      playing, volume,
-      played, loaded, duration
+      volume, played, loaded, duration
     } = this.state;
+
+    const {
+      playlist,
+      songs,
+      albums,
+      song,
+      playing
+    } = this.props;
+
+    let nowPlaying = {};
+    if(song) {
+      nowPlaying = songs[playlist[song]];
+    }
 
     return (
       <div>
@@ -59,7 +70,7 @@ class Player extends React.Component {
           ref={player => { this.player = player }}
           hidden={true}
           className='react-player'
-          url={this.props.playlist[this.props.song]}
+          url={nowPlaying.clip}
           playing={playing}
           volume={volume}
           onPlay={() => this.setState({playing: true})}
@@ -70,33 +81,35 @@ class Player extends React.Component {
           onProgress={this.onProgress}
           onDuration={duration => this.setState({ duration })}
         />
-      <div className="currentlyPlaying">
-        {this.props.playlist_url}
-      </div>
-      <div className="player-controls">
-        <input
-          type='range' min={0} max={1} step='any'
-          className='sliders'
-          value={played}
-          onMouseDown={this.onSeekMouseDown}
-          onChange={this.onSeekChange}
-          onMouseUp={this.onSeekMouseUp}
-        />
- 
-      <div className="song-controls">
-        <button onClick={this.props.previousSong}>Prev</button>
-        <button onClick={this.playPause}>{playing ? 'Pause' : 'Play'}</button>
-        <button onClick={this.props.nextSong}>Next</button>
-      </div>
-      </div>
-      <div className="volume-control">
-        <input type='range' className='sliders' min={0} max={1} step='any' value={volume} onChange={this.setVolume} />
-        <button onClick={(e) => {e.preventDefault(); console.log("hi"); this.props.receiveSong(
-            "/browse",
-            ["https://s3.amazonaws.com/baroquen-dev/Albums/Organ+Works%3A+Other+Free+Works/James_Kibbie_-_15_-_BWV_582_Passacaglia_and_Fugue_in_C_Minor.mp3"],
-            0
-          ); return false;}}>Demo</button>
-      </div>
+
+        <div className="currentlyPlaying">
+          <Link to={this.props.playlist_url} className="now-playing">
+            <span>Now Playing</span>
+            <img src={nowPlaying.id ? albums[nowPlaying.album_id].image_url : ""} />
+            <span>{nowPlaying.title}</span>
+          </Link>
+        </div>
+
+        <div className="player-controls">
+          <input
+            type='range' min={0} max={1} step='any'
+            className='sliders'
+            value={played}
+            onMouseDown={this.onSeekMouseDown}
+            onChange={this.onSeekChange}
+            onMouseUp={this.onSeekMouseUp}
+          />
+
+          <div className="song-controls">
+            <button onClick={this.props.previousSong}>Prev</button>
+            <button onClick={this.playPause}>{playing ? 'Pause' : 'Play'}</button>
+            <button onClick={this.props.nextSong}>Next</button>
+          </div>
+        </div>
+
+        <div className="volume-control">
+          <input type='range' className='sliders' min={0} max={1} step='any' value={volume} onChange={this.setVolume} />
+        </div>
       </div>
     )
   }

@@ -6,6 +6,21 @@ class Album extends React.Component {
     this.props.fetchAlbum().then(this.forceUpdate());
   }
 
+  playSong(song) {
+    return e => {
+      e.preventDefault();
+      let id = 0;
+      let playlist = this.props.songs.map(songId, idx => {
+        if(songId === song.id) {
+          id = idx;
+        }
+        return songId;
+      });
+      this.props.receiveSong(playlist, id);
+      return false;
+    };
+  }
+
   render() {
     if(!this.props.songs || !this.props.album) return null;
 
@@ -15,11 +30,11 @@ class Album extends React.Component {
       <div className="album">
         <img src={this.props.album.image_url} />
         <h1>{this.props.album.title}</h1>
-      <ul>
+      <ol>
         {this.props.songs.map(song => (
-          <li>{song.title}</li>
+          <li onClick={this.playSong(song)}>{song.title}</li>
         ))}
-      </ul>
+      </ol>
       </div>
     );
   }

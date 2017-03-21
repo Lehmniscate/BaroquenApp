@@ -1,6 +1,5 @@
 export const RECEIVE_SONG = "RECEIVE_SONG";
-export const PLAY = "PLAY";
-export const PAUSE = "PAUSE";
+export const PLAYPAUSE = "PLAYPAUSE";
 export const NEXT = "NEXT";
 export const PREVIOUS = "PREVIOUS";
 
@@ -17,4 +16,8 @@ export const nextSong = () => ({
 
 export const previousSong = () => ({
   type: PREVIOUS
+});
+
+export const receivePlayPause = () => ({
+  typ: PLAYPAUSE
 });

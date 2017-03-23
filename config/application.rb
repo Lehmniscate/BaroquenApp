@@ -21,6 +21,5 @@ module Baroquen
       }
     }
 
-    config.force_ssl = true
   end
 end

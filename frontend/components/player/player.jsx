@@ -117,6 +117,7 @@ class Player extends React.Component {
           </div>
 
           <div className="song-progress">
+            <div className="song-progress-bar">
            <input
             type='range' min={0} max={1} step='any'
             className='sliders'
@@ -125,13 +126,17 @@ class Player extends React.Component {
             onChange={this.onSeekChange}
             onMouseUp={this.onSeekMouseUp}
             />
-            <div className="song-progress-played" style={{"width" : `${played*300}px`}}></div>
+            </div>
+            <div className="song-progress-played" style={{"width" : `${played*290}px`}}></div>
+            <div className="song-progress-total"></div>
           </div>
 
        </div>
 
         <div className="volume-control">
           <input type='range' className='sliders' min={0} max={1} step='any' value={volume} onChange={this.setVolume} />
+            <div className="volume-progress-played" style={{"width" : `${volume*90}px`}}></div>
+            <div className="volume-progress-total"></div>
         </div>
       </div>
     )

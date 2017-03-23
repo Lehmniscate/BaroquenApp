@@ -1,7 +1,105 @@
-ol > li {
+.song-list > li {
   cursor: pointer;
 }
 
-ol > li:hover {
+.song-list > li:hover {
   background-color: #555;
+}
+
+.main {
+  padding: 20px;
+}
+
+.artist {
+  display: flex;
+  flex-direction: row;
+}
+
+.artist-info {
+  margin-right: 20px;
+}
+
+.table-view {
+  flex-grow: 1;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.table-view > li {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 250px;
+  background-color: #111;
+  font-size: 12px;
+  margin: 20px;
+}
+
+.table-view .list-image {
+  overflow: hidden;
+  width: 200px;
+  height: 200px;
+}
+
+.table-view .list-image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.table-view .list-title {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.album {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.album-info {
+  margin-right: 20px;
+  position: fixed;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.album-info img {
+  object-fit: cover;
+  width: 250px;
+  height: 250px;
+}
+
+.album-info h1 {
+  margin: 10px;
+  font-size: 20px;
+}
+
+.song-list {
+  width: 100%;
+  list-style: none;
+  margin-left: 300px;
+}
+
+.song-list li {
+  margin: 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.song-list-index {
+  width: 40px;
+}
+
+.song-list-title {
+  width: 65%;
+}
+
+.song-list-artist {
+  width: 30%;
 }

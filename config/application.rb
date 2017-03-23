@@ -20,5 +20,7 @@ module Baroquen
         :s3_region => ENV["s3_region"]
       }
     }
+
+    config.force_ssl = true
   end
 end

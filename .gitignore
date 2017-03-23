@@ -25,3 +25,5 @@ npm-debug.log
 
 # Ignore application configuration
 /config/application.yml
+server.*
+www_baroquen_audio.*

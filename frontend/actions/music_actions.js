@@ -23,20 +23,21 @@ export const fetchSong = id => dispatch => (
   APIUtil.receiveSong(id)
     .then(song => dispatch(receiveSongs([song])))
 );
-
-export const fetchAlbum = id => dispatch => {
-  APIUtil.receiveAlbum(id)
-    .then(album => dispatch(receiveAlbums([album])));
-  return APIUtil.receiveSongs(id)
-    .then(songs => dispatch(receiveSongs(songs)));
-};
-
 export const fetchArtist = id => dispatch => {
   APIUtil.receiveArtist(id)
     .then(artist => dispatch(receiveArtists([artist])));
   return APIUtil.receiveAlbums(id)
     .then(albums => dispatch(receiveAlbums(albums)));
 };
+
+export const fetchAlbum = id => dispatch => {
+  APIUtil.receiveAlbum(id)
+    .then(album => { dispatch(receiveAlbums([album])); return album;})
+    .then(album => { APIUtil.receiveArtist(album.artist_id).then(artist => dispatch(receiveArtists([artist])));});
+  return APIUtil.receiveSongs(id)
+    .then(songs => dispatch(receiveSongs(songs)));
+};
+
 
 export const fetchArtists = () => dispatch => {
   APIUtil.receiveArtists()

@@ -10,8 +10,16 @@ class Browse extends React.Component {
   render() {
     return (
       <div className="artist-browse">
-        {this.props.artists.map(artist => (
-          <Link key={artist.id} to={`artist/${artist.id}`} ><img src={artist.image_url} /></Link>))}
+        <ul className="table-view">
+          {this.props.artists.map(artist => (
+            <li key={artist.id}>
+              <Link to={`artist/${artist.id}`} >
+                <div className="list-image"><img src={artist.image_url} /></div>
+                <div className="list-title">{artist.name}</div>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }

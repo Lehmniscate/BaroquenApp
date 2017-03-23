@@ -64,6 +64,19 @@ class Player extends React.Component {
       nowPlaying = songs[playlist[song]];
     }
 
+    const play = () => (
+      <svg onClick={this.playPause.bind(this)} className="button-play" viewBox="0 0 131 141" >
+        <path d="M 0 70 L 0 10 Q 0 0 8.8 4.74 L 121.2 65.26 Q 130 70 121.2 74.4 L 8.8 135.26 Q 0 140 0 130 Z" fill="gray" />
+      </svg>
+    );
+
+    const pause = () => (
+      <svg onClick={this.playPause.bind(this)} className="button-pause" viewBox="0 0 131 141" >
+        <rect x="10" y="0" width="50" height="140" rx="7.5" ry="7.5" fill="grey" />
+        <rect x="70" y="0" width="50" height="140" rx="7.5" ry="7.5" fill="grey" />
+      </svg>
+    );
+
     return (
       <div>
         <ReactPlayer
@@ -91,21 +104,31 @@ class Player extends React.Component {
         </div>
 
         <div className="player-controls">
-          <input
+          <div className="song-controls">
+            <svg onClick={this.props.previousSong} className="button-prev" viewBox="0 0 131 142">
+              <rect x="100" y="0" width="30" height="140" rx="4.5" ry="4.5" fill="gray" />
+              <path d="M 0 70 L 0 10 Q 0 0 7.89 6.14 L 82.11 63.86 Q 90 70 82.11 76.14 L 7.89 133.86 Q 0 140 0 130 Z" fill="gray" transform="rotate(180, 45, 70)" />
+            </svg>
+            {playing ? pause() : play()}
+            <svg onClick={this.props.nextSong} className="button-next" viewBox="0 0 131 142">
+              <rect x="0" y="0" width="30" height="140" rx="4.5" ry="4.5" fill="gray" />
+              <path d="M 40 70 L 40 10 Q 40 0 47.89 6.14 L 122.11 63.86 Q 130 70 122.11 76.14 L 47.89 133.86 Q 40 140 40 130 Z" fill="gray" />
+            </svg>
+          </div>
+
+          <div className="song-progress">
+           <input
             type='range' min={0} max={1} step='any'
             className='sliders'
             value={played}
             onMouseDown={this.onSeekMouseDown}
             onChange={this.onSeekChange}
             onMouseUp={this.onSeekMouseUp}
-          />
-
-          <div className="song-controls">
-            <button onClick={this.props.previousSong}>Prev</button>
-            <button onClick={this.playPause}>{playing ? 'Pause' : 'Play'}</button>
-            <button onClick={this.props.nextSong}>Next</button>
+            />
+            <div className="song-progress-played" style={{"width" : `${played*300}px`}}></div>
           </div>
-        </div>
+
+       </div>
 
         <div className="volume-control">
           <input type='range' className='sliders' min={0} max={1} step='any' value={volume} onChange={this.setVolume} />

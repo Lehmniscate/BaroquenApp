@@ -22,17 +22,28 @@ class Album extends React.Component {
   }
 
   render() {
-    if(!this.props.songs || !this.props.album || !this.props.songs[0]) return null;
+    if(!this.props.songs || !this.props.album || !this.props.songs[0] || !this.props.artists[this.props.album.artist_id]) return null;
+
+    let album = this.props.album;
+    let artists = this.props.artists;
+
 
     return (
       <div className="album">
-        <img src={this.props.album.image_url} />
-        <h1>{this.props.album.title}</h1>
-      <ol>
-        {this.props.songs.map(song => (
-          <li key={song.id} onClick={this.playSong(song)}>{song.title}</li>
-        ))}
-      </ol>
+        <div className="album-info">
+          <img src={this.props.album.image_url} />
+          <h1>{this.props.album.title}</h1>
+          <h4><Link to={`artist/${album.artist_id}`}>{artists[album.artist_id].name}</Link></h4>
+        </div>
+        <ul className="song-list">
+          {this.props.songs.map((song, i) => (
+            <li key={song.id} onClick={this.playSong(song)}>
+              <div className="song-list-index">{i+1}</div>
+              <div className="song-list-title">{song.title}</div>
+              <div className="song-list-artist">{artists[album.artist_id].name}</div>
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }

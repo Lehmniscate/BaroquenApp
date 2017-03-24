@@ -88,7 +88,6 @@ export const createPlaylist = playlist => dispatch => {
 };
 
 export const updatePlaylist = playlist => dispatch => {
-  console.log(playlist);
   return APIUtil.updatePlaylist(playlist)
     .then(playlist => dispatch(receivePlaylists([playlist])));
 };

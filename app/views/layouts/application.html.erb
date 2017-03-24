@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Baroquen</title>
+    <link rel="shortcut icon" href="https://s3.amazonaws.com/baroquen-dev/favicon.ico" />
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -14,7 +15,7 @@
     <% end %>
   </head>
 
-  <body>
+  <body oncontextmenu="return false">
 
     <%= yield %>
   </body>

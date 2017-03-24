@@ -26,19 +26,20 @@ body {
     min-height: 100%;
     // height: auto !important;
     height: 100%;
-    margin: 0 auto -125px; /* the bottom margin is the negative value of the footer's height */
+    margin: 0 auto -100px; /* the bottom margin is the negative value of the footer's height */
     position: relative
 }
 
 .footer {
-    height: 125px;
+    height: 100px;
     background-color: #161616;
     position: fixed;
+    bottom: 0;
     width: 100%;
 }
 
 .push {
-    height: 125px;
+    height: 100px;
     clear: both;
     background: transparent;
 }
@@ -48,17 +49,21 @@ body {
 }
 
 .sidebar {
-    width: 150px;
+    width: 200px;
     position: fixed;
     left: 0;
     top: 0px;
-    bottom: 125px;
-    background: rgba(22, 22, 22, 0.5);
+    bottom: 100px;
+    background: rgba(0, 0, 0, 0.7);
     color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 18px;
+    z-index: 2;
 }
 
 .main {
-    margin-left: 150px;
+    margin-left: 200px;
     background-color: transparent;
 }
 
@@ -71,17 +76,27 @@ body {
   align-items: center;
 }
 
-.side-bar > a {
+.side-bar > div {
   width: 100%;
-  display: flex;
-  justify-content: space-around;
-  text-decoration: none;
-  color: #CCCCCC;
 }
 
-.side-bar > a > img {
+.side-bar a {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: #CCCCCC;
+  height: 40px;
+}
+
+.side-bar a:hover {
+  color: #FFF;
+}
+
+.side-bar a > img {
   width: 20px;
   height: 20px;
+  margin-right: 10px;
 }
 
 .wrapper {
@@ -101,22 +116,3 @@ body {
   color: #CCC;
 }
 
-.side-bar > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.side-bar > div > a {
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin-top: 5px;
-}
-
-.side-bar > div > a:hover {
-  background-color: #444;
-}

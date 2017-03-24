@@ -102,4 +102,8 @@ songs.each do |song_path|
       clip: song)
 end
 
+p = Playlist.create!(title: "My Bach Playlist", user_id: demoUser.id)
 
+Song.all.each do |song|
+  p.add_song(song)
+end

@@ -2,13 +2,16 @@ import {
   RECEIVE_SONGS,
   RECEIVE_ALBUMS,
   RECEIVE_ARTISTS,
+  RECEIVE_PLAYLISTS,
+  DELETE_PLAYLIST
 } from '../actions/music_actions';
 import merge from 'lodash/merge';
 
 const defaultState = Object.freeze({
   artists: {},
   albums: {},
-  songs: {}
+  songs: {},
+  playlists: {}
 });
 
 const MusicReducer = (state = defaultState, action) => {
@@ -25,7 +28,18 @@ const MusicReducer = (state = defaultState, action) => {
     case RECEIVE_SONGS:
       const songs = {};
       action.songs.forEach(song => songs[song.id] = song);
-      return merge({}, {artists: state.artists}, {albums: state.albums}, {songs});
+      return merge({}, state, {songs});
+    case RECEIVE_PLAYLISTS:
+      let playlists = {};
+      action.playlists.forEach(playlist => playlists[playlist.id] = playlist);
+      return merge({}, state, {playlists});
+    case DELETE_PLAYLIST:
+      playlists = {};
+      Object.keys(state.playlists).forEach(id => {
+        if(id !== action.playlist.id) 
+          playlists[id] = state.playlists[id];
+      });
+      return merge({}, state, {playlists});
     default:
       return state;
   }

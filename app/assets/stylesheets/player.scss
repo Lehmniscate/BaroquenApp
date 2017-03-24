@@ -150,6 +150,9 @@ div.bottom-bar > div {
 .song-controls {
   height: 50px;
   position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .song-controls svg {

@@ -5,6 +5,6 @@ class Api::SongsController < ApplicationController
   end
 
   def show
-    @song = song.find(params[:id])
+    @song = Song.find(params[:id])
   end
 end

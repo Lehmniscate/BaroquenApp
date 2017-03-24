@@ -1,7 +1,18 @@
 import React from 'react';
 import {withRouter, Link} from 'react-router';
 
+import PlaylistSelectorContainer from '../songs/playlist_selector_container.jsx';
+import Song from '../songs/song';
+
 class Album extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      song: null
+    };
+  }
+
   componentWillMount() {
     this.props.fetchAlbum().then(this.forceUpdate());
   }
@@ -21,6 +32,18 @@ class Album extends React.Component {
     };
   }
 
+  addToPlaylist(song) {
+    return e => {
+      e.preventDefault();
+      this.setState({song: song});
+      return false;
+    };
+  }
+
+  closeSelector() {
+    return e => this.setState({song: null});
+  }
+
   render() {
     if(!this.props.songs || !this.props.album || !this.props.songs[0] || !this.props.artists[this.props.album.artist_id]) return null;
 
@@ -31,19 +54,26 @@ class Album extends React.Component {
     return (
       <div className="album">
         <div className="album-info">
-          <img src={this.props.album.image_url} />
+          <div className="info-image">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
+            <div><img src={this.props.album.image_url} /></div>
+          </div>
           <h1>{this.props.album.title}</h1>
           <h4><Link to={`artist/${album.artist_id}`}>{artists[album.artist_id].name}</Link></h4>
         </div>
+        <div className="list-push"></div>
         <ul className="song-list">
-          {this.props.songs.map((song, i) => (
-            <li key={song.id} onClick={this.playSong(song)}>
-              <div className="song-list-index">{i+1}</div>
-              <div className="song-list-title">{song.title}</div>
-              <div className="song-list-artist">{artists[album.artist_id].name}</div>
-            </li>
-          ))}
+          {this.props.songs.map((song, i) => {
+            if(!song) return null;
+
+            return <Song addToPlaylist={this.addToPlaylist(song)}
+              key={song.id + i} 
+              playSong={this.playSong(song)} 
+              song={song} 
+              artists={artists} album={album} i={i} />;
+          })}
         </ul>
+        <PlaylistSelectorContainer closeSelector={this.closeSelector()} song={this.state.song} />
       </div>
     );
   }

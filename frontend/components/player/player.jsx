@@ -46,6 +46,14 @@ class Player extends React.Component {
     }
   }
 
+  keyPress(e) {
+    e = e || window.event;
+    if(e.keyCode == 32 && !window.modal) {
+      e.preventDefault();
+      this.props.receivePlayPause();
+    }
+  }
+
   render() {
     const {
       volume, played, loaded, duration
@@ -77,6 +85,10 @@ class Player extends React.Component {
       </svg>
     );
 
+    document.onkeypress = this.keyPress.bind(this);
+
+    let album = albums[nowPlaying.album_id] || {};
+
     return (
       <div>
         <ReactPlayer
@@ -98,7 +110,7 @@ class Player extends React.Component {
         <div className="currentlyPlaying">
           <Link to={this.props.playlist_url} className="now-playing">
             <span>Now Playing</span>
-            <img src={nowPlaying.id ? albums[nowPlaying.album_id].image_url : ""} />
+            <img src={nowPlaying.id ? album.image_url : ""} />
             <div className="c-p-song-container"><span className="c-p-song-name">{nowPlaying.title}</span></div>
           </Link>
         </div>

@@ -11,6 +11,7 @@ import HomePageContainer from './home_page_container';
 import BrowseContainer from './browsing/browse_container';
 import ArtistContainer from './artists/artist_container';
 import AlbumContainer from './albums/album_container';
+import PlaylistContainer from './playlists/playlist_container';
 
 const Root = ({store}) => {
 
@@ -43,9 +44,10 @@ const Root = ({store}) => {
             <Route path="/welcome" component={WelcomeContainer} onEnter={_redirectIfLoggedIn} />
           </Route>
           <Route path="/home" component={HomePageContainer} onEnter={_ensureLoggedIn}>
-            <Route path="/browse" component={BrowseContainer} />
+            <IndexRoute component={BrowseContainer} />
             <Route path="/artist/:artistId" component={ArtistContainer} />
             <Route path="/album/:albumId" component={AlbumContainer} />
+            <Route path="/playlist/:playlistId" component={PlaylistContainer} />
           </Route>
         </Route>
       </Router>

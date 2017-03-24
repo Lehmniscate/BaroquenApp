@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170317224943) do
+ActiveRecord::Schema.define(version: 20170323171533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,30 @@ ActiveRecord::Schema.define(version: 20170317224943) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.index ["name"], name: "index_artists_on_name", unique: true, using: :btree
+  end
+
+  create_table "playlist_adds", force: :cascade do |t|
+    t.integer  "song_id",       null: false
+    t.integer  "song_position", null: false
+    t.integer  "playlist_id",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["playlist_id"], name: "index_playlist_adds_on_playlist_id", using: :btree
+    t.index ["song_id"], name: "index_playlist_adds_on_song_id", using: :btree
+  end
+
+  create_table "playlists", force: :cascade do |t|
+    t.string   "title",              null: false
+    t.integer  "user_id",            null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.index ["title", "user_id"], name: "index_playlists_on_title_and_user_id", unique: true, using: :btree
+    t.index ["title"], name: "index_playlists_on_title", using: :btree
+    t.index ["user_id"], name: "index_playlists_on_user_id", using: :btree
   end
 
   create_table "songs", force: :cascade do |t|

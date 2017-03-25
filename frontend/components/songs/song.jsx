@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 
 const Song = ({song, i, album, artists, user, playSong, addToPlaylist}) => {
-
+  let artist = artists[album.artist_id] || {};
   return (
     <li>
       <div onClick={playSong} className="song-list-play-button">
@@ -12,8 +12,8 @@ const Song = ({song, i, album, artists, user, playSong, addToPlaylist}) => {
         </div>
         <div className="song-list-title">{song.title}</div>
       </div>
-      <div className="song-list-album">{album.title}</div>
-      <div className="song-list-artist">{artists[album.artist_id] ? artists[album.artist_id].name : ""}</div>
+      <div className="song-list-album"><Link to={`album/${album.id}`}>{album.title}</Link></div>
+      <div className="song-list-artist"><Link to={`artist/${artist.id}`}>{artist.name}</Link></div>
       {addToPlaylist ? <div onClick={addToPlaylist} className="add-to-playlist">&#43;</div> : null}
     </li>
   );

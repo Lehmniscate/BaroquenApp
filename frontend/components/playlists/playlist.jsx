@@ -38,7 +38,7 @@ class Playlist extends React.Component {
             <div><img src={playlist.image_url} /></div>
           </div>
           <h1>{playlist.title}</h1>
-          <span className="button play-button">Play</span>
+          <span onClick={this.playSong(songs[0])} className="button play-button">Play</span>
           <span onClick={e => this.props.deletePlaylist(playlist)} className="button delete-playlist">Delete</span>
         </div>
         <div className="list-push"></div>

@@ -60,6 +60,7 @@ class Album extends React.Component {
           </div>
           <h1>{this.props.album.title}</h1>
           <h4><Link to={`artist/${album.artist_id}`}>{artists[album.artist_id].name}</Link></h4>
+          <span className="button play-button" onClick={this.playSong(this.props.songs[0])}>Play</span>
         </div>
         <div className="list-push"></div>
         <ul className="song-list">

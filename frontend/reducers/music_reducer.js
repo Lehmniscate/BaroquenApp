@@ -36,10 +36,12 @@ const MusicReducer = (state = defaultState, action) => {
     case DELETE_PLAYLIST:
       playlists = {};
       Object.keys(state.playlists).forEach(id => {
-        if(id !== action.playlist.id) 
-          playlists[id] = state.playlists[id];
+        console.log(id, action.playlist.id);
+        if(id != action.playlist.id) playlists[id] = state.playlists[id];
       });
-      return merge({}, state, {playlists});
+      let newState = merge({}, state);
+      newState.playlists = playlists;
+      return newState;
     default:
       return state;
   }

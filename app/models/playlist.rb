@@ -24,5 +24,11 @@ class Playlist < ApplicationRecord
     last_song_pos = self.playlist_adds.pluck(:song_position).max || 1
     PlaylistAdd.create(playlist_id: self.id, song_id: song.id, song_position: (last_song_pos + 1))
   end
+  
+  def remove_song list_idx
+    playlist_items = playlist_adds.sort_by(&:song_position)
+    PlaylistAdd.destroy(playlist_items[list_idx])
+  end
+
   accepts_nested_attributes_for :songs
 end

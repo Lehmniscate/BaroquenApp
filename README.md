@@ -11,13 +11,13 @@
 
 Baroquen is a web application inspired by Spotify built using Ruby on Rails and React/Redux. This app will, at a minimum, satisfy the following criteria with smooth, bug-free navigation, adequate seed data and sufficient CSS styling:
 
-- [ ] New account creation, login, and guest/demo login
-- [ ] [Production README](docs/production_readme.md)
-- [ ] Hosting on Heroku
-- [ ] Song and Playlist CRUD
-- [ ] Playlist Sharing
-- [ ] Continuous playing while navigating site
+- [x] New account creation, login, and guest/demo login
+- [x] Hosting on Heroku
+- [x] Song and Playlist CRUD
+- [x] Playlist Sharing
+- [x] Continuous playing while navigating site
 - [ ] Following and friending
+- [ ] [Production README](docs/production_readme.md)
 
 ## Design Docs
 

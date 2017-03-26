@@ -2,7 +2,7 @@ import React from 'react';
 import {withRouter, Link} from 'react-router';
 
 import PlaylistSelectorContainer from '../songs/playlist_selector_container.jsx';
-import Song from '../songs/song';
+import SongContainer from '../songs/song_container';
 
 class Album extends React.Component {
 
@@ -67,7 +67,7 @@ class Album extends React.Component {
           {this.props.songs.map((song, i) => {
             if(!song) return null;
 
-            return <Song addToPlaylist={this.addToPlaylist(song)}
+            return <SongContainer addToPlaylist={this.addToPlaylist(song)}
               key={song.id + i} 
               playSong={this.playSong(song)} 
               song={song} 

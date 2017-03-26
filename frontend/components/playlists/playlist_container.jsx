@@ -3,7 +3,8 @@ import {hashHistory} from 'react-router';
 import Playlist from './playlist';
 import {
   fetchPlaylist, 
-  deletePlaylist
+  deletePlaylist, 
+  updatePlaylist
 } from '../../actions/music_actions';
 import {SongsByPlaylist} from '../../reducers/selectors';
 import {receiveSong} from '../../actions/player_actions';
@@ -21,7 +22,8 @@ const mapDispatchToProps = (dispatch, {params}) => ({
     `/playlist/${params.playlistId}`,
     playlist,
     song)),
-  deletePlaylist: (playlist) => dispatch(deletePlaylist(playlist)).then(() => hashHistory.push("/"))
+  deletePlaylist: (playlist) => dispatch(deletePlaylist(playlist)).then(() => hashHistory.push("/")),
+  updatePlaylist: (playlist) => dispatch(updatePlaylist(playlist))
 });
 
 export default connect(

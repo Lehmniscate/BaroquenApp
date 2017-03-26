@@ -72,6 +72,8 @@ class Player extends React.Component {
       nowPlaying = songs[playlist[song]];
     }
 
+    let album = albums[nowPlaying.album_id] || {};
+
     const play = () => (
       <svg onClick={this.playPause.bind(this)} className="button-play" viewBox="0 0 131 141" >
         <path d="M 0 70 L 0 10 Q 0 0 8.8 4.74 L 121.2 65.26 Q 130 70 121.2 74.4 L 8.8 135.26 Q 0 140 0 130 Z" fill="gray" />
@@ -85,9 +87,22 @@ class Player extends React.Component {
       </svg>
     );
 
-    document.onkeypress = this.keyPress.bind(this);
+    const currentlyPlaying = () => {
+      if(!nowPlaying.id) return null;
+      return (
+        <div className="currentlyPlaying">
+          <Link to={this.props.playlist_url} className="now-playing">
+            <img src={nowPlaying.id ? album.image_url : ""} />
+          </Link>
+          <div>
+            <Link to={this.props.playlist_url}>{nowPlaying.title}</Link>
+            <Link className="currently-playing-album" to={`album/${nowPlaying.album_id}`}>{album.title}</Link>
+          </div>
+        </div>
+      );
+    };
 
-    let album = albums[nowPlaying.album_id] || {};
+    document.onkeypress = this.keyPress.bind(this);
 
     return (
       <div>
@@ -107,14 +122,8 @@ class Player extends React.Component {
           onDuration={duration => this.setState({ duration })}
         />
 
-        <div className="currentlyPlaying">
-          <Link to={this.props.playlist_url} className="now-playing">
-            <span>Now Playing</span>
-            <img src={nowPlaying.id ? album.image_url : ""} />
-            <div className="c-p-song-container"><span className="c-p-song-name">{nowPlaying.title}</span></div>
-          </Link>
-        </div>
-
+      {currentlyPlaying()}
+        <div className="control-push"></div>
         <div className="player-controls">
           <div className="song-controls">
             <svg onClick={this.props.previousSong} className="button-prev" viewBox="0 0 131 142">

@@ -20,13 +20,21 @@ class Api::PlaylistsController < ApplicationController
 
   def update
     @playlist = Playlist.find_by_id(params[:id])
-    p playlist_params
-    
-    songs = params[:playlist][:songs].map {|song| Song.find_by_id(song) }
+    songs = playlist_params[:songs]
+
     if @playlist.nil? || @playlist.user != current_user
       render json: {}, status: 401 
-    elsif songs.length != @playlist.songs.length
-      if @playlist.add_song(songs.last)
+    elsif songs.length > @playlist.list.length
+      if @playlist.add_song(Song.find_by_id(songs.last))
+        render Playlist.find_by_id(@playlist.id)
+      else
+        render json: @playlist.errors.full_messages, status: 422
+      end
+    elsif songs.length < @playlist.list.length
+      old_songs = @playlist.list
+      idx = @playlist.list.index.with_index { |a, i| a.id != songs[i] }
+
+      if @playlist.remove_song idx
         render Playlist.find_by_id(@playlist.id)
       else
         render json: @playlist.errors.full_messages, status: 422

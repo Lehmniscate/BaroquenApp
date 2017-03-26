@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter, Link} from 'react-router';
 
-import Song from '../songs/song';
+import SongContainer from '../songs/song_container';
 
 class Playlist extends React.Component {
   componentWillMount() {
@@ -9,18 +9,22 @@ class Playlist extends React.Component {
       .then(this.forceUpdate());
   }
 
-  playSong(song) {
+  playSong(song, idx) {
     return e => {
       e.preventDefault();
-      let id = 0;
-      let playlist = this.props.songs.map((songObject, idx) => {
-        if(songObject.id === song.id) {
-          id = idx;
-        }
+      let playlist = this.props.songs.map(songObject => {
         return songObject.id;
       });
-      this.props.receiveSong(playlist, id);
+      this.props.receiveSong(playlist, idx);
       return false;
+    };
+  }
+
+  removeSong(song, idx) {
+    return e => {
+      let playlist = this.props.playlist;
+      playlist.songs = playlist.songs.slice(0, idx).concat(playlist.songs.slice(idx + 1));
+      this.props.updatePlaylist(playlist);
     };
   }
 
@@ -38,7 +42,7 @@ class Playlist extends React.Component {
             <div><img src={playlist.image_url} /></div>
           </div>
           <h1>{playlist.title}</h1>
-          <span onClick={this.playSong(songs[0])} className="button play-button">Play</span>
+          <span onClick={this.playSong(songs[0], 0)} className="button play-button">Play</span>
           <span onClick={e => this.props.deletePlaylist(playlist)} className="button delete-playlist">Delete</span>
         </div>
         <div className="list-push"></div>
@@ -46,14 +50,16 @@ class Playlist extends React.Component {
           {this.props.songs.map((song, i) => {
             if(!song) return null;
             
-            return <Song key={song.id * i}
-                        playSong={this.playSong(song)}
+            return <SongContainer key={song.id * i}
+                        playSong={this.playSong(song, i)}
                         i={i}
                         song={song}
                         artists={artists}
                         playlist={playlist}
                         album={albums[song.album_id] || {}}
-                        songs={songs} />;
+                        songs={songs} 
+                        addToPlaylist={this.removeSong(song, i)}
+                        symbol={"-"}/>;
           })}
         </ul>
       </div>

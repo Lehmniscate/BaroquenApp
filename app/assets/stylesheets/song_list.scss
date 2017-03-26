@@ -1,0 +1,92 @@
+.song-list-item {
+  margin: 0;
+  height: 3em;
+  padding: 10px; 
+  border-bottom: solid 1px rbga(20, 20, 20, 0.8);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.song-list-item:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.song-list-index {
+  opacity: 1;
+}
+
+.song-list-play {
+  cursor: pointer;
+}
+
+.add-to-playlist {
+  margin: 0 5px;
+  font-size: 34px;
+  cursor: pointer;
+}
+
+.add-to-playlist:hover {
+  color: #fff;
+  transform: scale(1.2);
+}
+
+.song-list-item:hover .song-list-index {
+  opacity: 0;
+}
+
+.song-list-play-overlay {
+  position: relative;
+  top: 1em;
+  opacity: 0;
+  transform: scale(1.2);
+}
+
+.song-list-item:hover .song-list-play-overlay {
+  opacity: 1;
+}
+
+.song-list-index {
+  width: 40px;
+}
+
+.playing {
+  color: blueviolet;
+}
+
+.playing div > a {
+  color: blueviolet;
+}
+
+.song-list-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.song-list-info > div{
+  display: flex;
+  flex-direction: column;
+}
+
+.song-list-title {
+  font-size: 20px;
+}
+
+.song-list-track-info {
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+}
+
+.song-list-artist {
+  margin-right: 10px;
+}
+
+.song-list-artist:hover > a {
+  text-decoration: underline;
+}
+
+.song-list-album:hover > a {
+  text-decoration: underline;
+}

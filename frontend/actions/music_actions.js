@@ -71,7 +71,9 @@ export const fetchPlaylist = id => dispatch => {
   return APIUtil.receivePlaylist(id)
     .then(playlist => { 
       dispatch(receivePlaylists([playlist]));
-      playlist.songs.forEach(song => dispatch(fetchSong(song)));})
+      playlist.songs.forEach(song => dispatch(fetchSong(song)));
+      return playlist;
+    });
 };
 
 export const fetchPlaylists = () => dispatch => {

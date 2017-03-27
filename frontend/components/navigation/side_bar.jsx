@@ -59,6 +59,9 @@ class SideBar extends React.Component {
     return (
       <div className="side-bar">
         <div>
+          <div className="side-bar-logo">
+            <img src="https://s3.amazonaws.com/baroquen-dev/disc-logo.png" />
+          </div>
           <Link to="/home">Browse</Link>
         </div>
         <div>

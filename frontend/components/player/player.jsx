@@ -75,17 +75,29 @@ class Player extends React.Component {
     let album = albums[nowPlaying.album_id] || {};
 
     const play = () => (
-      <svg onClick={this.playPause.bind(this)} className="button-play" viewBox="0 0 131 141" >
+      <svg onClick={this.playPause.bind(this)} className="button-play playable" viewBox="0 0 131 141" >
         <path d="M 0 70 L 0 10 Q 0 0 8.8 4.74 L 121.2 65.26 Q 130 70 121.2 74.4 L 8.8 135.26 Q 0 140 0 130 Z" fill="gray" />
       </svg>
     );
 
     const pause = () => (
-      <svg onClick={this.playPause.bind(this)} className="button-pause" viewBox="0 0 131 141" >
+      <svg onClick={this.playPause.bind(this)} className="button-pause playable" viewBox="0 0 131 141" >
         <rect x="10" y="0" width="50" height="140" rx="7.5" ry="7.5" fill="grey" />
         <rect x="70" y="0" width="50" height="140" rx="7.5" ry="7.5" fill="grey" />
       </svg>
     );
+
+    const playable = condition => {
+      if(condition) {
+        return !playing ? play() : pause();
+      } else {
+        return (
+          <svg className="disabled-play" viewBox="0 0 131 141" >
+            <path d="M 0 70 L 0 10 Q 0 0 8.8 4.74 L 121.2 65.26 Q 130 70 121.2 74.4 L 8.8 135.26 Q 0 140 0 130 Z" fill="gray" />
+          </svg>
+        );
+      }
+    };
 
     const currentlyPlaying = () => {
       if(!nowPlaying.id) return null;
@@ -104,12 +116,14 @@ class Player extends React.Component {
 
     document.onkeypress = this.keyPress.bind(this);
 
+    let playingClass = !!nowPlaying.clip ? "playable" : "unplayable";
+
     return (
       <div>
         <ReactPlayer
           ref={player => { this.player = player }}
           hidden={true}
-          className='react-player'
+          className="react-player"
           url={nowPlaying.clip}
           playing={playing}
           volume={volume}
@@ -126,12 +140,14 @@ class Player extends React.Component {
         <div className="control-push"></div>
         <div className="player-controls">
           <div className="song-controls">
-            <svg onClick={this.props.previousSong} className="button-prev" viewBox="0 0 131 142">
+            <svg onClick={this.props.previousSong} className={`button-prev ${playingClass}`} viewBox="0 0 131 142">
               <rect x="100" y="0" width="30" height="140" rx="4.5" ry="4.5" fill="gray" />
               <path d="M 0 70 L 0 10 Q 0 0 7.89 6.14 L 82.11 63.86 Q 90 70 82.11 76.14 L 7.89 133.86 Q 0 140 0 130 Z" fill="gray" transform="rotate(180, 45, 70)" />
             </svg>
-            {playing ? pause() : play()}
-            <svg onClick={this.props.nextSong} className="button-next" viewBox="0 0 131 142">
+
+            {playable(!!nowPlaying.clip)}
+
+            <svg onClick={this.props.nextSong} className={`button-next ${playingClass}`} viewBox="0 0 131 142">
               <rect x="0" y="0" width="30" height="140" rx="4.5" ry="4.5" fill="gray" />
               <path d="M 40 70 L 40 10 Q 40 0 47.89 6.14 L 122.11 63.86 Q 130 70 122.11 76.14 L 47.89 133.86 Q 40 140 40 130 Z" fill="gray" />
             </svg>

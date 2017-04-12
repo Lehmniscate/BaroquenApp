@@ -151,10 +151,13 @@ a.currently-playing-album {
   width: 20px;
   height: 20px;
   margin: 0 30px;
+}
+
+.playable {
   cursor: pointer;
 }
 
-.song-controls svg:hover {
+.playable:hover {
   transform: scale(1.2);
 }
 

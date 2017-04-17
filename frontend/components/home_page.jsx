@@ -11,6 +11,8 @@ class HomePage extends React.Component {
     this.props.logout().then(() => this.props.router.push('/welcome'));
   }
 
+
+
   render() {
     return (
       <div className="home-page">

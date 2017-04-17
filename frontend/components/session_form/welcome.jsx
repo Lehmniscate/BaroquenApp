@@ -6,7 +6,7 @@ class Welcome extends React.Component {
     super(props);
     this.login = this.login.bind(this);
   }
-
+  
   componentDidUpdate() {
     this.redirectIfLoggedIn();
   }

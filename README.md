@@ -1,60 +1,18 @@
-# Baroquen App
+# Baroquen
+[Baroquen Live][heroku]
 
-[Heroku link][heroku]
+[heroku]: https://baroquen.audio
 
-[Trello link][trello]
+Baroquen is a web application based on Spotify's web player. It is structured with Ruby on Rails as the backend, a PostgreSQL database, and React/Redux fronted framework.
 
-[heroku]: http://baroquen.herokuapp.com
-[trello]: https://trello.com/b/LINDF6v9/baroquen
+##Features and Implementation
 
-## Minimum Viable Product
+### Music Playing
 
-Baroquen is a web application inspired by Spotify built using Ruby on Rails and React/Redux. This app will, at a minimum, satisfy the following criteria with smooth, bug-free navigation, adequate seed data and sufficient CSS styling:
+Songs are stored with relations to their Albums and Artists. The paperclip gem is used to associate the music files to the songs, and store the files on Amazon web services for content delivery. 
 
-- [x] New account creation, login, and guest/demo login
-- [x] Hosting on Heroku
-- [x] Song and Playlist CRUD
-- [x] Playlist Sharing
-- [x] Continuous playing while navigating site
-- [ ] Following and friending
-- [ ] [Production README](docs/production_readme.md)
+The songs are played within the bottom bar, and the play queue is stored seperately in the redux store. React-Player is used to handle the streaming and playing of music. The libary allows easy seeking and custom displaying of the progress of the music being played as well as starting the next song on completion of previous song.
 
-## Design Docs
+### Playlists
 
-* [View Wireframes][wireframes]
-* [React Components][components]
-* [API endpoints][api-endpoints]
-* [DB schema][schema]
-* [Sample State][sample-state]
-
-[wireframes]: docs/wireframes
-[components]: docs/component-hierarchy.md
-[sample-state]: docs/sample-state.md
-[api-endpoints]: docs/api-endpoints.md
-[schema]: docs/schema.md
-
-## Implementation Timeline
-
-### Phase 1: Back-end setup and Front-end User Setup (1 day)
-**Objective:** Functioning Rails project with front-end authentication
-
-### Phase 2: Artist, Album, Songs: Models, API, and components (2 days)
-**Objective:** Songs and their albums and artist information can be created, read, updated, and destroyed through the API
-
-### Phase 3: Playlist Model, API, and components (1 day)
-**Objective:** Playlists can be created, read, updated, and destroyed through the API
-
-### Phase 4: Playlist Sharing (2 day)
-**Objective:** Playlist can be shared with other users
-
-### Phase 5: Continuous playing of music (2 days)
-**Objective:** Songs can be played and will continue playing through navigation of the website
-
-### Phase 6: Following and friending (1 day)
-**Objective:** Users can follow other users' playlists and friend other users
-
-### Bonus Features (TBD)
-- [ ] Radio
-- [ ] Explore page
-- [ ] Search
-- [ ] Recently Played
+Playlists are structured with a join table to associate songs to the playlist. Creating a new playlist opens a modal to allow the user to input a name for the playlist. Adding a song to playlists also opens a modal to allow the user to select which playlist to add the song to. 

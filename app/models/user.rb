@@ -11,6 +11,13 @@ class User < ApplicationRecord
 
   before_validation :ensure_session_token
 
+  has_many :follows
+
+  has_many :followed_playlists, through: :follows, source: :followed, source_type: :Playlist
+  has_many :followed_users, through: :follows, source: :followed, source_type: :User
+  has_many :followed_albums, through: :follows, source: :followed, source_type: :Album
+  has_many :followed_songs, through: :follows, source: :followed, source_type: :Song
+
   def password= password
     self.password_digest = BCrypt::Password.create(password)
     @password = password

@@ -10,6 +10,11 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = current_user
+
+      if @user.id == params[:user]
+
   private
 
   def user_params

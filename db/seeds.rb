@@ -15,13 +15,59 @@ demoUser.save!
 Artist.delete_all
 Album.delete_all
 Song.delete_all
+Playlist.delete_all
+
+=begin
+p = Playlist.create!(title: "My Bach Playlist", user_id: demoUser.id)
+
+Song.all.each do |song|
+  p.add_song(song)
+end
+
+=end
+
+awspath = "https://s3.amazonaws.com/baroquen-dev/Music_Seeds/Music"
+
+file = File.open(File.join(Rails.root, 'db', 'list.txt'))
+contents = ""
+file.each { |line| contents << line }
+structure = JSON.parse(contents)
+music = structure.first["contents"].detect { |dir| dir["type"] == "directory" }["contents"]
+music.each do |artist_directory|
+  artist_name = artist_directory["name"]
+  artist = Artist.new(name: artist_name.split("_").join(" "))
+  image = URI.parse("#{awspath}/#{artist_name}/image.jpg")
+  p image
+  artist.image = image
+  artist.save!
+
+  artist_directory["contents"].each do |album_directory|
+    next unless album_directory["type"] == "directory"
+
+    album_name = album_directory["name"]
+
+    album = Album.new(title: album_name.split("_").join(" "), artist_id: artist.id)
+    image = URI.parse("#{awspath}/#{artist_name}/#{album_name}/title.jpg")
+    p image
+    album.image = image
+    album.save!
+
+    album_directory["contents"].each do |song_file|
+      next if song_file["name"] == "title.jpg"
+      song_name = song_file["name"]
+      song = URI.parse("#{awspath}/#{artist_name}/#{album_name}/#{song_name}")
+      p song
+      Song.create!(title: song_name[3...-4].split("_").join(" "),
+                   album_id: album.id,
+                   track_number: song_name[0...2].to_i,
+                   clip: song)
+    end
+  end
+end
+
+bach = Artist.find_by_name("Johann Sebastian Bach")
 
 awspath = "https://s3.amazonaws.com/baroquen-dev/"
-
-bach = Artist.new(name: "Johann Sebastian Bach", description: "A German composer and musician of the Baroque period")
-image = URI.parse("#{awspath}Bach.jpg").open
-bach.image = image
-bach.save!
 
 otherfreeworks = Album.new(title: "Organ Works: other free works", artist_id: bach.id)
 image = URI.parse("#{awspath}Albums/Organ+Works%3A+Other+Free+Works/Bach_Organ_Works_Other_Free_Works.jpg").open
@@ -102,8 +148,4 @@ songs.each do |song_path|
       clip: song)
 end
 
-p = Playlist.create!(title: "My Bach Playlist", user_id: demoUser.id)
 
-Song.all.each do |song|
-  p.add_song(song)
-end

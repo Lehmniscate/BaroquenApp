@@ -9,6 +9,8 @@ class Playlist < ApplicationRecord
   has_many :playlist_adds
   has_many :songs, through: :playlist_adds, source: :song
 
+  has_many :follows, as: :followed
+
   def image_url=(url)
     self.image = URI.parse(url).open
   end

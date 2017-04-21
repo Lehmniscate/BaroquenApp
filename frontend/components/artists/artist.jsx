@@ -11,9 +11,12 @@ class Artist extends React.Component {
     return (
       <div className="artist">
         <div className="artist-info">
-          <img src={this.props.artist.image_url} />
+          <div className="info-image">
+            <img src={this.props.artist.image_url} />
+          </div>
           <h1>{this.props.artist.name}</h1>
         </div>
+        <div className="list-push"></div>
         <ul className="table-view">
           {this.props.albums.map(album => (
             <li key={album.id}>

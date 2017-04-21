@@ -5,7 +5,6 @@ import PlaylistSelectorContainer from '../songs/playlist_selector_container.jsx'
 import SongContainer from '../songs/song_container';
 
 class Album extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {

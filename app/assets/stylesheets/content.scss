@@ -31,10 +31,11 @@
 }
 
 .table-view {
-  flex-grow: 1;
   list-style: none;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .table-view > li {
@@ -69,13 +70,13 @@
   margin-top: 10px;
 }
 
-.playlist, .album {
+.playlist, .artist, .album {
   display: flex;
   flex-direction: row;
   width: 100%;
 }
 
-.playlist-info, .album-info {
+.artist-info, .playlist-info, .album-info {
   margin-right: 20px;
   margin-top: 50px;
   padding: 50px 8%;
@@ -112,7 +113,7 @@
   height: 100%;
 }
 
-.playlist-info h1, .album-info h1 {
+.artist-info h1, .playlist-info h1, .album-info h1 {
   margin: 10px;
   font-size: 20px;
 }

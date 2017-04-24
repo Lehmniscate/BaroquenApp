@@ -13,6 +13,8 @@ class User < ApplicationRecord
 
   has_many :follows
 
+  has_many :playlists
+
   has_many :followed_playlists, through: :follows, source: :followed, source_type: :Playlist
   has_many :followed_users, through: :follows, source: :followed, source_type: :User
   has_many :followed_albums, through: :follows, source: :followed, source_type: :Album

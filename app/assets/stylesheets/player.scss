@@ -89,8 +89,12 @@ div.player-controls {
 
 div.volume-control {
   width: 100px;
-  margin-top: 50px;
+  margin-top: 0;
   margin-right: 50px;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  justify-content: center;
 }
 
 div.bottom-bar {
@@ -147,9 +151,7 @@ a.currently-playing-album {
   align-self: center;
 }
 
-.song-controls svg {
-  width: 20px;
-  height: 20px;
+.song-controls i {
   margin: 0 30px;
 }
 
@@ -213,4 +215,12 @@ div.volume-progress-total {
 
 .volume-progress > .sliders:hover ~ .volume-progress-total {
   background-color: #333;
+}
+
+div.volume-control > i {
+  position: relative;
+  top: 1em;
+  left: -1em;
+  width: 1em;
+  cursor: pointer;
 }

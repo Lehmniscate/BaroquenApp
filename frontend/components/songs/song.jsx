@@ -7,7 +7,7 @@ const Song = ({nowPlaying, symbol, song, i, album, artists, user, playSong, addT
     <li className={nowPlaying === song.id ? "playing song-list-item" : "song-list-item"}>
       <div className="song-list-info">
         <div onClick={playSong} className="song-list-play">
-          <div className="song-list-play-overlay">&#9658;</div>
+          <div className="song-list-play-overlay"><i className="fa fa-play" /></div>
           <div className="song-list-index">{i+1}</div>
         </div>
         <div>
